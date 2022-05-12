@@ -39,6 +39,16 @@ namespace Ejercicio1
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.tbDNI = new System.Windows.Forms.TextBox();
             this.tbTelf = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bAnterior = new System.Windows.Forms.Button();
+            this.bPrimero = new System.Windows.Forms.Button();
+            this.bSiguiente = new System.Windows.Forms.Button();
+            this.bUltimo = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.bGuardar = new System.Windows.Forms.Button();
+            this.bAnyadir = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -121,11 +131,97 @@ namespace Ejercicio1
             this.tbTelf.Size = new System.Drawing.Size(225, 22);
             this.tbTelf.TabIndex = 9;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.bUltimo);
+            this.groupBox1.Controls.Add(this.bSiguiente);
+            this.groupBox1.Controls.Add(this.bPrimero);
+            this.groupBox1.Controls.Add(this.bAnterior);
+            this.groupBox1.Location = new System.Drawing.Point(39, 209);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(725, 120);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Navegar";
+            // 
+            // bAnterior
+            // 
+            this.bAnterior.Location = new System.Drawing.Point(195, 30);
+            this.bAnterior.Name = "bAnterior";
+            this.bAnterior.Size = new System.Drawing.Size(164, 67);
+            this.bAnterior.TabIndex = 0;
+            this.bAnterior.Text = "Anterior";
+            this.bAnterior.UseVisualStyleBackColor = true;
+            this.bAnterior.Click += new System.EventHandler(this.bAnterior_Click);
+            // 
+            // bPrimero
+            // 
+            this.bPrimero.Location = new System.Drawing.Point(25, 30);
+            this.bPrimero.Name = "bPrimero";
+            this.bPrimero.Size = new System.Drawing.Size(164, 67);
+            this.bPrimero.TabIndex = 1;
+            this.bPrimero.Text = "Primero";
+            this.bPrimero.UseVisualStyleBackColor = true;
+            this.bPrimero.Click += new System.EventHandler(this.bPrimero_Click);
+            // 
+            // bSiguiente
+            // 
+            this.bSiguiente.Location = new System.Drawing.Point(365, 30);
+            this.bSiguiente.Name = "bSiguiente";
+            this.bSiguiente.Size = new System.Drawing.Size(164, 67);
+            this.bSiguiente.TabIndex = 2;
+            this.bSiguiente.Text = "Siguiente";
+            this.bSiguiente.UseVisualStyleBackColor = true;
+            this.bSiguiente.Click += new System.EventHandler(this.bSiguiente_Click);
+            // 
+            // bUltimo
+            // 
+            this.bUltimo.Location = new System.Drawing.Point(535, 30);
+            this.bUltimo.Name = "bUltimo";
+            this.bUltimo.Size = new System.Drawing.Size(164, 67);
+            this.bUltimo.TabIndex = 3;
+            this.bUltimo.Text = "Último";
+            this.bUltimo.UseVisualStyleBackColor = true;
+            this.bUltimo.Click += new System.EventHandler(this.bUltimo_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.bAnyadir);
+            this.groupBox2.Controls.Add(this.bGuardar);
+            this.groupBox2.Location = new System.Drawing.Point(39, 353);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(359, 110);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Nuevo Profesor";
+            // 
+            // bGuardar
+            // 
+            this.bGuardar.Location = new System.Drawing.Point(195, 21);
+            this.bGuardar.Name = "bGuardar";
+            this.bGuardar.Size = new System.Drawing.Size(140, 76);
+            this.bGuardar.TabIndex = 0;
+            this.bGuardar.Text = "Guardar";
+            this.bGuardar.UseVisualStyleBackColor = true;
+            this.bGuardar.Click += new System.EventHandler(this.bGuardar_Click);
+            // 
+            // bAnyadir
+            // 
+            this.bAnyadir.Location = new System.Drawing.Point(25, 21);
+            this.bAnyadir.Name = "bAnyadir";
+            this.bAnyadir.Size = new System.Drawing.Size(140, 76);
+            this.bAnyadir.TabIndex = 1;
+            this.bAnyadir.Text = "Añadir";
+            this.bAnyadir.UseVisualStyleBackColor = true;
+            this.bAnyadir.Click += new System.EventHandler(this.bAnyadir_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 523);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbTelf);
             this.Controls.Add(this.tbDNI);
             this.Controls.Add(this.tbEmail);
@@ -139,6 +235,8 @@ namespace Ejercicio1
             this.Name = "Form1";
             this.Text = "Ejercicio 1 - Profesores";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,6 +254,14 @@ namespace Ejercicio1
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.TextBox tbDNI;
         private System.Windows.Forms.TextBox tbTelf;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button bUltimo;
+        private System.Windows.Forms.Button bSiguiente;
+        private System.Windows.Forms.Button bPrimero;
+        private System.Windows.Forms.Button bAnterior;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button bAnyadir;
+        private System.Windows.Forms.Button bGuardar;
     }
 }
 

@@ -21,6 +21,7 @@ namespace Ejercicio1
         DataSet dsProfesores;
         SqlDataAdapter dataAdapter;
         private int pos;
+        private int MaxRegistros;
 
         private void MostrarRegistro(int pos)
         {
@@ -52,8 +53,62 @@ namespace Ejercicio1
 
             pos = 0;
             MostrarRegistro(pos);
+            MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
 
             conect.Close();
+        }
+
+        private void bPrimero_Click(object sender, EventArgs e)
+        {
+            pos = 0;
+            MostrarRegistro(pos);
+        }
+        //TODO: desactivar botones si se superan los límites del registro. 
+        private void bAnterior_Click(object sender, EventArgs e)
+        {
+            pos--;
+            MostrarRegistro(pos);
+        }
+
+        private void bSiguiente_Click(object sender, EventArgs e)
+        {
+            pos++;
+            MostrarRegistro(pos);
+        }
+
+        private void bUltimo_Click(object sender, EventArgs e)
+        {
+            pos = MaxRegistros - 1;
+            MostrarRegistro(pos);
+        }
+
+        private void bAnyadir_Click(object sender, EventArgs e)
+        {
+            tbDNI.Clear();
+            tbNombre.Clear();
+            tbApellidos.Clear();
+            tbEmail.Clear();
+            tbTelf.Clear();
+        }
+
+        private void bGuardar_Click(object sender, EventArgs e)
+        {
+            DataRow drRegistro = dsProfesores.Tables["Profesores"].NewRow();
+
+            drRegistro["DNI"] = tbDNI.Text;
+            drRegistro["Nombre"] = tbNombre.Text;
+            drRegistro["Apellido"] = tbApellidos.Text;
+            drRegistro["Tlf"] = tbTelf.Text;
+            drRegistro["EMail"] = tbEmail.Text;
+
+            dsProfesores.Tables["Profesores"].Rows.Add(drRegistro);
+
+            SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
+
+            dataAdapter.Update(dsProfesores, "Profesores");
+
+            MaxRegistros++;
+            pos = MaxRegistros - 1;
         }
     }
 }

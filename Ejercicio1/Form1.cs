@@ -22,7 +22,26 @@ namespace Ejercicio1
         SqlDataAdapter dataAdapter;
         private int pos;
         private int MaxRegistros;
-
+        
+        private void Deshabilitar(int pos)
+        {
+            if (pos == 0 || pos < 0)
+            {
+                bAnterior.Enabled = false;
+            }
+            else
+            {
+                bAnterior.Enabled = true;
+            }
+            if((pos+1) == MaxRegistros)
+            {
+                bSiguiente.Enabled = false;
+            }
+            else
+            {
+                bSiguiente.Enabled = true;
+            }
+        }
         private void MostrarRegistro(int pos)
         {
             DataRow drRegistro;
@@ -34,6 +53,7 @@ namespace Ejercicio1
             tbTelf.Text = drRegistro["Tlf"].ToString();
             tbApellidos.Text = drRegistro["Apellido"].ToString();
             tbEmail.Text = drRegistro["email"].ToString();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,32 +74,43 @@ namespace Ejercicio1
             pos = 0;
             MostrarRegistro(pos);
             MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
-
+            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+            bAnterior.Enabled = false;
             conect.Close();
+
         }
 
         private void bPrimero_Click(object sender, EventArgs e)
         {
             pos = 0;
+            Deshabilitar(pos);
             MostrarRegistro(pos);
+            lbContador.Text = "Registro " + (pos+1) + " de " + MaxRegistros;
         }
-        //TODO: desactivar botones si se superan los límites del registro. 
+
         private void bAnterior_Click(object sender, EventArgs e)
         {
             pos--;
+            Deshabilitar(pos);
             MostrarRegistro(pos);
+            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
         }
 
         private void bSiguiente_Click(object sender, EventArgs e)
         {
             pos++;
+            Deshabilitar(pos);
             MostrarRegistro(pos);
+            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+            bAnterior.Enabled = true;
         }
 
         private void bUltimo_Click(object sender, EventArgs e)
         {
             pos = MaxRegistros - 1;
+            Deshabilitar(pos);
             MostrarRegistro(pos);
+            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
         }
 
         private void bAnyadir_Click(object sender, EventArgs e)
@@ -109,6 +140,42 @@ namespace Ejercicio1
 
             MaxRegistros++;
             pos = MaxRegistros - 1;
+            Deshabilitar(pos);
+            MostrarRegistro(pos);
+            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+        }
+
+        private void bActualizar_Click(object sender, EventArgs e)
+        {
+            DataRow drRegistro = dsProfesores.Tables["Profesores"].Rows[pos];
+
+            drRegistro["DNI"] = tbDNI.Text;
+            drRegistro["Nombre"] = tbNombre.Text;
+            drRegistro["Apellido"] = tbApellidos.Text;
+            drRegistro["Tlf"] = tbTelf.Text;
+            drRegistro["EMail"] = tbEmail.Text;
+
+            SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
+            dataAdapter.Update(dsProfesores, "Profesores");
+        }
+
+        private void bEliminar_Click(object sender, EventArgs e)
+        {
+            DialogResult Eliminar;
+            Eliminar = MessageBox.Show("¿Desea eliminar el registro?", "Eliminar", MessageBoxButtons.YesNo);
+
+            if (Eliminar == DialogResult.Yes)
+            {
+                dsProfesores.Tables["Profesores"].Rows[pos].Delete();
+
+                SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.Update(dsProfesores, "Profesores");
+                MaxRegistros--;
+                pos = 0;
+                MostrarRegistro(pos);
+                MessageBox.Show("Registro eliminado.");
+            }
+            
         }
     }
 }

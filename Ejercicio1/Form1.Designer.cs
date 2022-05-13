@@ -40,15 +40,20 @@ namespace Ejercicio1
             this.tbDNI = new System.Windows.Forms.TextBox();
             this.tbTelf = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.bAnterior = new System.Windows.Forms.Button();
-            this.bPrimero = new System.Windows.Forms.Button();
-            this.bSiguiente = new System.Windows.Forms.Button();
             this.bUltimo = new System.Windows.Forms.Button();
+            this.bSiguiente = new System.Windows.Forms.Button();
+            this.bPrimero = new System.Windows.Forms.Button();
+            this.bAnterior = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.bGuardar = new System.Windows.Forms.Button();
             this.bAnyadir = new System.Windows.Forms.Button();
+            this.bGuardar = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.bEliminar = new System.Windows.Forms.Button();
+            this.bActualizar = new System.Windows.Forms.Button();
+            this.lbContador = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -137,42 +142,12 @@ namespace Ejercicio1
             this.groupBox1.Controls.Add(this.bSiguiente);
             this.groupBox1.Controls.Add(this.bPrimero);
             this.groupBox1.Controls.Add(this.bAnterior);
-            this.groupBox1.Location = new System.Drawing.Point(39, 209);
+            this.groupBox1.Location = new System.Drawing.Point(43, 251);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(725, 120);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Navegar";
-            // 
-            // bAnterior
-            // 
-            this.bAnterior.Location = new System.Drawing.Point(195, 30);
-            this.bAnterior.Name = "bAnterior";
-            this.bAnterior.Size = new System.Drawing.Size(164, 67);
-            this.bAnterior.TabIndex = 0;
-            this.bAnterior.Text = "Anterior";
-            this.bAnterior.UseVisualStyleBackColor = true;
-            this.bAnterior.Click += new System.EventHandler(this.bAnterior_Click);
-            // 
-            // bPrimero
-            // 
-            this.bPrimero.Location = new System.Drawing.Point(25, 30);
-            this.bPrimero.Name = "bPrimero";
-            this.bPrimero.Size = new System.Drawing.Size(164, 67);
-            this.bPrimero.TabIndex = 1;
-            this.bPrimero.Text = "Primero";
-            this.bPrimero.UseVisualStyleBackColor = true;
-            this.bPrimero.Click += new System.EventHandler(this.bPrimero_Click);
-            // 
-            // bSiguiente
-            // 
-            this.bSiguiente.Location = new System.Drawing.Point(365, 30);
-            this.bSiguiente.Name = "bSiguiente";
-            this.bSiguiente.Size = new System.Drawing.Size(164, 67);
-            this.bSiguiente.TabIndex = 2;
-            this.bSiguiente.Text = "Siguiente";
-            this.bSiguiente.UseVisualStyleBackColor = true;
-            this.bSiguiente.Click += new System.EventHandler(this.bSiguiente_Click);
             // 
             // bUltimo
             // 
@@ -184,26 +159,46 @@ namespace Ejercicio1
             this.bUltimo.UseVisualStyleBackColor = true;
             this.bUltimo.Click += new System.EventHandler(this.bUltimo_Click);
             // 
+            // bSiguiente
+            // 
+            this.bSiguiente.Location = new System.Drawing.Point(365, 30);
+            this.bSiguiente.Name = "bSiguiente";
+            this.bSiguiente.Size = new System.Drawing.Size(164, 67);
+            this.bSiguiente.TabIndex = 2;
+            this.bSiguiente.Text = "Siguiente";
+            this.bSiguiente.UseVisualStyleBackColor = true;
+            this.bSiguiente.Click += new System.EventHandler(this.bSiguiente_Click);
+            // 
+            // bPrimero
+            // 
+            this.bPrimero.Location = new System.Drawing.Point(25, 30);
+            this.bPrimero.Name = "bPrimero";
+            this.bPrimero.Size = new System.Drawing.Size(164, 67);
+            this.bPrimero.TabIndex = 1;
+            this.bPrimero.Text = "Primero";
+            this.bPrimero.UseVisualStyleBackColor = true;
+            this.bPrimero.Click += new System.EventHandler(this.bPrimero_Click);
+            // 
+            // bAnterior
+            // 
+            this.bAnterior.Location = new System.Drawing.Point(195, 30);
+            this.bAnterior.Name = "bAnterior";
+            this.bAnterior.Size = new System.Drawing.Size(164, 67);
+            this.bAnterior.TabIndex = 0;
+            this.bAnterior.Text = "Anterior";
+            this.bAnterior.UseVisualStyleBackColor = true;
+            this.bAnterior.Click += new System.EventHandler(this.bAnterior_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.bAnyadir);
             this.groupBox2.Controls.Add(this.bGuardar);
-            this.groupBox2.Location = new System.Drawing.Point(39, 353);
+            this.groupBox2.Location = new System.Drawing.Point(39, 395);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(359, 110);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Nuevo Profesor";
-            // 
-            // bGuardar
-            // 
-            this.bGuardar.Location = new System.Drawing.Point(195, 21);
-            this.bGuardar.Name = "bGuardar";
-            this.bGuardar.Size = new System.Drawing.Size(140, 76);
-            this.bGuardar.TabIndex = 0;
-            this.bGuardar.Text = "Guardar";
-            this.bGuardar.UseVisualStyleBackColor = true;
-            this.bGuardar.Click += new System.EventHandler(this.bGuardar_Click);
             // 
             // bAnyadir
             // 
@@ -215,11 +210,62 @@ namespace Ejercicio1
             this.bAnyadir.UseVisualStyleBackColor = true;
             this.bAnyadir.Click += new System.EventHandler(this.bAnyadir_Click);
             // 
+            // bGuardar
+            // 
+            this.bGuardar.Location = new System.Drawing.Point(195, 21);
+            this.bGuardar.Name = "bGuardar";
+            this.bGuardar.Size = new System.Drawing.Size(140, 76);
+            this.bGuardar.TabIndex = 0;
+            this.bGuardar.Text = "Guardar";
+            this.bGuardar.UseVisualStyleBackColor = true;
+            this.bGuardar.Click += new System.EventHandler(this.bGuardar_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.bActualizar);
+            this.groupBox3.Controls.Add(this.bEliminar);
+            this.groupBox3.Location = new System.Drawing.Point(419, 395);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(345, 110);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Actualizar y Eliminar";
+            // 
+            // bEliminar
+            // 
+            this.bEliminar.Location = new System.Drawing.Point(179, 21);
+            this.bEliminar.Name = "bEliminar";
+            this.bEliminar.Size = new System.Drawing.Size(140, 76);
+            this.bEliminar.TabIndex = 0;
+            this.bEliminar.Text = "Eliminar";
+            this.bEliminar.UseVisualStyleBackColor = true;
+            this.bEliminar.Click += new System.EventHandler(this.bEliminar_Click);
+            // 
+            // bActualizar
+            // 
+            this.bActualizar.Location = new System.Drawing.Point(23, 21);
+            this.bActualizar.Name = "bActualizar";
+            this.bActualizar.Size = new System.Drawing.Size(140, 76);
+            this.bActualizar.TabIndex = 1;
+            this.bActualizar.Text = "Actualizar";
+            this.bActualizar.UseVisualStyleBackColor = true;
+            this.bActualizar.Click += new System.EventHandler(this.bActualizar_Click);
+            // 
+            // lbContador
+            // 
+            this.lbContador.AutoSize = true;
+            this.lbContador.Location = new System.Drawing.Point(336, 214);
+            this.lbContador.Name = "lbContador";
+            this.lbContador.Size = new System.Drawing.Size(0, 17);
+            this.lbContador.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 523);
+            this.Controls.Add(this.lbContador);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbTelf);
@@ -237,6 +283,7 @@ namespace Ejercicio1
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,6 +309,10 @@ namespace Ejercicio1
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button bAnyadir;
         private System.Windows.Forms.Button bGuardar;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button bActualizar;
+        private System.Windows.Forms.Button bEliminar;
+        private System.Windows.Forms.Label lbContador;
     }
 }
 

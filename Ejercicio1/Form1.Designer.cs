@@ -52,12 +52,12 @@ namespace Ejercicio1
             this.bEliminar = new System.Windows.Forms.Button();
             this.lbContador = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rbApellidos = new System.Windows.Forms.RadioButton();
+            this.rbNombre = new System.Windows.Forms.RadioButton();
+            this.rbDNI = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.tbBuscar = new System.Windows.Forms.TextBox();
             this.bBuscar = new System.Windows.Forms.Button();
-            this.rbDNI = new System.Windows.Forms.RadioButton();
-            this.rbNombre = new System.Windows.Forms.RadioButton();
-            this.rbApellidos = new System.Windows.Forms.RadioButton();
             this.bMostrarTodos = new System.Windows.Forms.Button();
             this.lbTablaVacia = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -69,7 +69,7 @@ namespace Ejercicio1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 52);
+            this.label1.Location = new System.Drawing.Point(58, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 0;
@@ -78,7 +78,7 @@ namespace Ejercicio1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(439, 128);
+            this.label2.Location = new System.Drawing.Point(436, 121);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 1;
@@ -87,7 +87,7 @@ namespace Ejercicio1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(416, 76);
+            this.label3.Location = new System.Drawing.Point(413, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 17);
             this.label3.TabIndex = 2;
@@ -96,7 +96,7 @@ namespace Ejercicio1
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(61, 148);
+            this.label4.Location = new System.Drawing.Point(58, 141);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(28, 17);
             this.label4.TabIndex = 3;
@@ -105,7 +105,7 @@ namespace Ejercicio1
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(61, 100);
+            this.label5.Location = new System.Drawing.Point(58, 93);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 17);
             this.label5.TabIndex = 4;
@@ -113,7 +113,7 @@ namespace Ejercicio1
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(149, 97);
+            this.tbNombre.Location = new System.Drawing.Point(146, 90);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(225, 22);
             this.tbNombre.TabIndex = 5;
@@ -121,7 +121,7 @@ namespace Ejercicio1
             // 
             // tbApellidos
             // 
-            this.tbApellidos.Location = new System.Drawing.Point(508, 73);
+            this.tbApellidos.Location = new System.Drawing.Point(505, 66);
             this.tbApellidos.Name = "tbApellidos";
             this.tbApellidos.Size = new System.Drawing.Size(225, 22);
             this.tbApellidos.TabIndex = 6;
@@ -129,7 +129,7 @@ namespace Ejercicio1
             // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(508, 125);
+            this.tbEmail.Location = new System.Drawing.Point(505, 118);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(225, 22);
             this.tbEmail.TabIndex = 7;
@@ -137,7 +137,7 @@ namespace Ejercicio1
             // 
             // tbDNI
             // 
-            this.tbDNI.Location = new System.Drawing.Point(149, 49);
+            this.tbDNI.Location = new System.Drawing.Point(146, 42);
             this.tbDNI.Name = "tbDNI";
             this.tbDNI.Size = new System.Drawing.Size(225, 22);
             this.tbDNI.TabIndex = 8;
@@ -145,7 +145,7 @@ namespace Ejercicio1
             // 
             // tbTelf
             // 
-            this.tbTelf.Location = new System.Drawing.Point(149, 145);
+            this.tbTelf.Location = new System.Drawing.Point(146, 138);
             this.tbTelf.Name = "tbTelf";
             this.tbTelf.Size = new System.Drawing.Size(225, 22);
             this.tbTelf.TabIndex = 9;
@@ -157,7 +157,7 @@ namespace Ejercicio1
             this.groupBox1.Controls.Add(this.bSiguiente);
             this.groupBox1.Controls.Add(this.bPrimero);
             this.groupBox1.Controls.Add(this.bAnterior);
-            this.groupBox1.Location = new System.Drawing.Point(43, 251);
+            this.groupBox1.Location = new System.Drawing.Point(40, 244);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(721, 120);
             this.groupBox1.TabIndex = 10;
@@ -208,7 +208,7 @@ namespace Ejercicio1
             // 
             this.groupBox2.Controls.Add(this.bAnyadir);
             this.groupBox2.Controls.Add(this.bGuardar);
-            this.groupBox2.Location = new System.Drawing.Point(43, 377);
+            this.groupBox2.Location = new System.Drawing.Point(40, 370);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(355, 110);
             this.groupBox2.TabIndex = 11;
@@ -239,7 +239,7 @@ namespace Ejercicio1
             // 
             this.groupBox3.Controls.Add(this.bActualizar);
             this.groupBox3.Controls.Add(this.bEliminar);
-            this.groupBox3.Location = new System.Drawing.Point(419, 377);
+            this.groupBox3.Location = new System.Drawing.Point(416, 370);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(345, 110);
             this.groupBox3.TabIndex = 12;
@@ -269,7 +269,7 @@ namespace Ejercicio1
             // lbContador
             // 
             this.lbContador.AutoSize = true;
-            this.lbContador.Location = new System.Drawing.Point(336, 214);
+            this.lbContador.Location = new System.Drawing.Point(333, 207);
             this.lbContador.Name = "lbContador";
             this.lbContador.Size = new System.Drawing.Size(0, 17);
             this.lbContador.TabIndex = 13;
@@ -282,12 +282,45 @@ namespace Ejercicio1
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.tbBuscar);
             this.groupBox4.Controls.Add(this.bBuscar);
-            this.groupBox4.Location = new System.Drawing.Point(43, 493);
+            this.groupBox4.Location = new System.Drawing.Point(40, 486);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(721, 121);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Búsqueda";
+            // 
+            // rbApellidos
+            // 
+            this.rbApellidos.AutoSize = true;
+            this.rbApellidos.Location = new System.Drawing.Point(111, 87);
+            this.rbApellidos.Name = "rbApellidos";
+            this.rbApellidos.Size = new System.Drawing.Size(86, 21);
+            this.rbApellidos.TabIndex = 5;
+            this.rbApellidos.TabStop = true;
+            this.rbApellidos.Text = "Apellidos";
+            this.rbApellidos.UseVisualStyleBackColor = true;
+            // 
+            // rbNombre
+            // 
+            this.rbNombre.AutoSize = true;
+            this.rbNombre.Location = new System.Drawing.Point(111, 60);
+            this.rbNombre.Name = "rbNombre";
+            this.rbNombre.Size = new System.Drawing.Size(79, 21);
+            this.rbNombre.TabIndex = 4;
+            this.rbNombre.TabStop = true;
+            this.rbNombre.Text = "Nombre";
+            this.rbNombre.UseVisualStyleBackColor = true;
+            // 
+            // rbDNI
+            // 
+            this.rbDNI.AutoSize = true;
+            this.rbDNI.Location = new System.Drawing.Point(111, 33);
+            this.rbDNI.Name = "rbDNI";
+            this.rbDNI.Size = new System.Drawing.Size(50, 21);
+            this.rbDNI.TabIndex = 3;
+            this.rbDNI.TabStop = true;
+            this.rbDNI.Text = "Dni";
+            this.rbDNI.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -315,42 +348,9 @@ namespace Ejercicio1
             this.bBuscar.UseVisualStyleBackColor = true;
             this.bBuscar.Click += new System.EventHandler(this.bBuscar_Click);
             // 
-            // rbDNI
-            // 
-            this.rbDNI.AutoSize = true;
-            this.rbDNI.Location = new System.Drawing.Point(111, 33);
-            this.rbDNI.Name = "rbDNI";
-            this.rbDNI.Size = new System.Drawing.Size(50, 21);
-            this.rbDNI.TabIndex = 3;
-            this.rbDNI.TabStop = true;
-            this.rbDNI.Text = "Dni";
-            this.rbDNI.UseVisualStyleBackColor = true;
-            // 
-            // rbNombre
-            // 
-            this.rbNombre.AutoSize = true;
-            this.rbNombre.Location = new System.Drawing.Point(111, 60);
-            this.rbNombre.Name = "rbNombre";
-            this.rbNombre.Size = new System.Drawing.Size(79, 21);
-            this.rbNombre.TabIndex = 4;
-            this.rbNombre.TabStop = true;
-            this.rbNombre.Text = "Nombre";
-            this.rbNombre.UseVisualStyleBackColor = true;
-            // 
-            // rbApellidos
-            // 
-            this.rbApellidos.AutoSize = true;
-            this.rbApellidos.Location = new System.Drawing.Point(111, 87);
-            this.rbApellidos.Name = "rbApellidos";
-            this.rbApellidos.Size = new System.Drawing.Size(86, 21);
-            this.rbApellidos.TabIndex = 5;
-            this.rbApellidos.TabStop = true;
-            this.rbApellidos.Text = "Apellidos";
-            this.rbApellidos.UseVisualStyleBackColor = true;
-            // 
             // bMostrarTodos
             // 
-            this.bMostrarTodos.Location = new System.Drawing.Point(501, 178);
+            this.bMostrarTodos.Location = new System.Drawing.Point(498, 171);
             this.bMostrarTodos.Name = "bMostrarTodos";
             this.bMostrarTodos.Size = new System.Drawing.Size(232, 53);
             this.bMostrarTodos.TabIndex = 15;
@@ -361,7 +361,7 @@ namespace Ejercicio1
             // lbTablaVacia
             // 
             this.lbTablaVacia.AutoSize = true;
-            this.lbTablaVacia.Location = new System.Drawing.Point(89, 214);
+            this.lbTablaVacia.Location = new System.Drawing.Point(86, 207);
             this.lbTablaVacia.Name = "lbTablaVacia";
             this.lbTablaVacia.Size = new System.Drawing.Size(0, 17);
             this.lbTablaVacia.TabIndex = 16;
@@ -370,7 +370,7 @@ namespace Ejercicio1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 658);
+            this.ClientSize = new System.Drawing.Size(800, 628);
             this.Controls.Add(this.lbTablaVacia);
             this.Controls.Add(this.bMostrarTodos);
             this.Controls.Add(this.groupBox4);

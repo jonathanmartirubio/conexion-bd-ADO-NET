@@ -13,16 +13,19 @@ namespace Ejercicio1
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(string cadConexion)
         {
             InitializeComponent();
+
+            this.cadConexion = cadConexion;
         }
 
         DataSet dsProfesores;
         SqlDataAdapter dataAdapter;
         private int pos;
         private int MaxRegistros;
-        
+        private string cadConexion;
+
         private void Deshabilitar(int pos)
         {
             if (pos == 0 || pos < 0)
@@ -35,7 +38,7 @@ namespace Ejercicio1
                 bAnterior.Enabled = true;
                 bPrimero.Enabled = true;
             }
-            if((pos+1) == MaxRegistros)
+            if ((pos + 1) == MaxRegistros)
             {
                 bSiguiente.Enabled = false;
                 bUltimo.Enabled = false;
@@ -116,38 +119,44 @@ namespace Ejercicio1
             bMostrarTodos.Enabled = true;
             lbTablaVacia.Text = "";
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            string cadConexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FA506IV\\source\\repos\\jonathanmartirubio\\conexion-bd-ADO-NET\\Instituto.mdf;Integrated Security=True;Connect Timeout=30";
-
-            SqlConnection conect = new SqlConnection(cadConexion);
-
-            conect.Open();
-
-            string cadenaSQL = "SELECT * From Profesores";
-            dataAdapter = new SqlDataAdapter(cadenaSQL, conect);
-
-            dsProfesores = new DataSet();
-
-            dataAdapter.Fill(dsProfesores, "Profesores");
-
-            pos = 0;
-            if (dsProfesores.Tables["Profesores"].Rows.Count == 0)
+            try
             {
-                SinRegistros();
+                SqlConnection conect = new SqlConnection(cadConexion);
+
+                conect.Open();
+
+                string cadenaSQL = "SELECT * From Profesores";
+                dataAdapter = new SqlDataAdapter(cadenaSQL, conect);
+
+                dsProfesores = new DataSet();
+
+                dataAdapter.Fill(dsProfesores, "Profesores");
+
+                pos = 0;
+                if (dsProfesores.Tables["Profesores"].Rows.Count == 0)
+                {
+                    SinRegistros();
+                }
+                else
+                {
+                    MostrarRegistro(pos);
+                    MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
+                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                    bAnterior.Enabled = false;
+                    bPrimero.Enabled = false;
+                    bActualizar.Enabled = false;
+                }
+                conect.Close();
             }
-            else
+            catch (System.Data.SqlClient.SqlException)
             {
-                MostrarRegistro(pos);
-                MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-                bAnterior.Enabled = false;
-                bPrimero.Enabled = false;
-                bActualizar.Enabled = false;
+
+                MessageBox.Show("Error al conectar con la base de datos.");
+
+                this.Close();
             }
-            
-            conect.Close();
 
         }
 
@@ -202,7 +211,7 @@ namespace Ejercicio1
                 Deshabilitar(pos);
                 lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
-            
+
         }
         private void bSiguiente_Click(object sender, EventArgs e)
         {
@@ -222,7 +231,7 @@ namespace Ejercicio1
                 Deshabilitar(pos);
                 lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
-            
+
         }
 
         private void bUltimo_Click(object sender, EventArgs e)
@@ -296,7 +305,7 @@ namespace Ejercicio1
                 MostrarRegistro(pos);
                 lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
-            
+
         }
 
         private void bActualizar_Click(object sender, EventArgs e)
@@ -336,12 +345,12 @@ namespace Ejercicio1
                     MessageBox.Show("Registro eliminado.");
                 }
             }
-            
+
         }
 
         private void TextoCambiado(object sender, EventArgs e)
         {
-                bActualizar.Enabled = true;
+            bActualizar.Enabled = true;
         }
 
 
@@ -369,14 +378,15 @@ namespace Ejercicio1
                     fBusqueda fBus = new fBusqueda(busquedaSQL);
                     fBus.ShowDialog();
                 }
-                
-            }  
+
+            }
         }
 
         private void bMostrarTodos_Click(object sender, EventArgs e)
         {
-            fProfesores fProf = new fProfesores(dataAdapter);
+            fProfesores fProf = new fProfesores(dataAdapter, cadConexion);
             fProf.ShowDialog();
         }
+
     }
 }

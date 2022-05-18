@@ -59,6 +59,7 @@ namespace Ejercicio1
             this.rbNombre = new System.Windows.Forms.RadioButton();
             this.rbApellidos = new System.Windows.Forms.RadioButton();
             this.bMostrarTodos = new System.Windows.Forms.Button();
+            this.lbTablaVacia = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -357,11 +358,20 @@ namespace Ejercicio1
             this.bMostrarTodos.UseVisualStyleBackColor = true;
             this.bMostrarTodos.Click += new System.EventHandler(this.bMostrarTodos_Click);
             // 
+            // lbTablaVacia
+            // 
+            this.lbTablaVacia.AutoSize = true;
+            this.lbTablaVacia.Location = new System.Drawing.Point(89, 214);
+            this.lbTablaVacia.Name = "lbTablaVacia";
+            this.lbTablaVacia.Size = new System.Drawing.Size(0, 17);
+            this.lbTablaVacia.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 658);
+            this.Controls.Add(this.lbTablaVacia);
             this.Controls.Add(this.bMostrarTodos);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.lbContador);
@@ -423,6 +433,7 @@ namespace Ejercicio1
         private System.Windows.Forms.RadioButton rbNombre;
         private System.Windows.Forms.RadioButton rbDNI;
         private System.Windows.Forms.Button bMostrarTodos;
+        private System.Windows.Forms.Label lbTablaVacia;
     }
 }
 

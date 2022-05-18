@@ -82,6 +82,41 @@ namespace Ejercicio1
 
         }
 
+        private string SinRegistros()
+        {
+            string texto;
+            tbApellidos.Clear();
+            tbNombre.Clear();
+            tbDNI.Clear();
+            tbEmail.Clear();
+            tbTelf.Clear();
+            lbContador.Text = "";
+            bBuscar.Enabled = false;
+            bEliminar.Enabled = false;
+            bSiguiente.Enabled = false;
+            bAnterior.Enabled = false;
+            bPrimero.Enabled = false;
+            bUltimo.Enabled = false;
+            bMostrarTodos.Enabled = false;
+            bActualizar.Enabled = false;
+            lbTablaVacia.Text = "La tabla de profesores está vacía";
+
+            texto = lbTablaVacia.Text;
+
+
+            return texto;
+        }
+
+        private void GuardarPrimerRegistro()
+        {
+            bEliminar.Enabled = true;
+            bBuscar.Enabled = true;
+            bUltimo.Enabled = true;
+            bPrimero.Enabled = true;
+            bMostrarTodos.Enabled = true;
+            lbTablaVacia.Text = "";
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             string cadConexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FA506IV\\source\\repos\\jonathanmartirubio\\conexion-bd-ADO-NET\\Instituto.mdf;Integrated Security=True;Connect Timeout=30";
@@ -98,12 +133,20 @@ namespace Ejercicio1
             dataAdapter.Fill(dsProfesores, "Profesores");
 
             pos = 0;
-            MostrarRegistro(pos);
-            MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
-            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-            bAnterior.Enabled = false;
-            bPrimero.Enabled = false;
-            bActualizar.Enabled = false;
+            if (dsProfesores.Tables["Profesores"].Rows.Count == 0)
+            {
+                SinRegistros();
+            }
+            else
+            {
+                MostrarRegistro(pos);
+                MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
+                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                bAnterior.Enabled = false;
+                bPrimero.Enabled = false;
+                bActualizar.Enabled = false;
+            }
+            
             conect.Close();
 
         }
@@ -116,11 +159,22 @@ namespace Ejercicio1
 
             if (!pregunta)
             {
-                pos = 0;
-                Deshabilitar(pos);
-                MostrarRegistro(pos);
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-                bActualizar.Enabled = false;
+                if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
+                {
+                    pos = 0;
+                    MostrarRegistro(pos);
+                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                    bActualizar.Enabled = false;
+                }
+                else
+                {
+                    pos = 0;
+                    Deshabilitar(pos);
+                    MostrarRegistro(pos);
+                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                    bActualizar.Enabled = false;
+                }
+
             }
             else
             {
@@ -179,11 +233,22 @@ namespace Ejercicio1
 
             if (!pregunta)
             {
-                pos = MaxRegistros - 1;
-                Deshabilitar(pos);
-                MostrarRegistro(pos);
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-                bActualizar.Enabled = false;
+                if (dsProfesores.Tables["profesores"].Rows.Count == 1)
+                {
+                    pos = MaxRegistros - 1;
+                    MostrarRegistro(pos);
+                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                    bActualizar.Enabled = false;
+                }
+                else
+                {
+                    pos = MaxRegistros - 1;
+                    Deshabilitar(pos);
+                    MostrarRegistro(pos);
+                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                    bActualizar.Enabled = false;
+                }
+
             }
             else
             {
@@ -217,12 +282,21 @@ namespace Ejercicio1
             SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
 
             dataAdapter.Update(dsProfesores, "Profesores");
-
-            MaxRegistros++;
-            pos = MaxRegistros - 1;
-            Deshabilitar(pos);
-            MostrarRegistro(pos);
-            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+            if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
+            {
+                GuardarPrimerRegistro();
+                pos = 0;
+                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+            }
+            else
+            {
+                MaxRegistros++;
+                pos = MaxRegistros - 1;
+                Deshabilitar(pos);
+                MostrarRegistro(pos);
+                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+            }
+            
         }
 
         private void bActualizar_Click(object sender, EventArgs e)
@@ -250,10 +324,17 @@ namespace Ejercicio1
 
                 SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.Update(dsProfesores, "Profesores");
-                MaxRegistros--;
-                pos = 0;
-                MostrarRegistro(pos);
-                MessageBox.Show("Registro eliminado.");
+                if (dsProfesores.Tables["Profesores"].Rows.Count == 0)
+                {
+                    SinRegistros();
+                }
+                else
+                {
+                    MaxRegistros--;
+                    pos = 0;
+                    MostrarRegistro(pos);
+                    MessageBox.Show("Registro eliminado.");
+                }
             }
             
         }

@@ -48,12 +48,20 @@ namespace Ejercicio1
             this.bAnyadir = new System.Windows.Forms.Button();
             this.bGuardar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.bEliminar = new System.Windows.Forms.Button();
             this.bActualizar = new System.Windows.Forms.Button();
+            this.bEliminar = new System.Windows.Forms.Button();
             this.lbContador = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbBuscar = new System.Windows.Forms.TextBox();
+            this.bBuscar = new System.Windows.Forms.Button();
+            this.rbDNI = new System.Windows.Forms.RadioButton();
+            this.rbNombre = new System.Windows.Forms.RadioButton();
+            this.rbApellidos = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -107,6 +115,7 @@ namespace Ejercicio1
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(225, 22);
             this.tbNombre.TabIndex = 5;
+            this.tbNombre.TextChanged += new System.EventHandler(this.TextoCambiado);
             // 
             // tbApellidos
             // 
@@ -114,6 +123,7 @@ namespace Ejercicio1
             this.tbApellidos.Name = "tbApellidos";
             this.tbApellidos.Size = new System.Drawing.Size(225, 22);
             this.tbApellidos.TabIndex = 6;
+            this.tbApellidos.TextChanged += new System.EventHandler(this.TextoCambiado);
             // 
             // tbEmail
             // 
@@ -121,6 +131,7 @@ namespace Ejercicio1
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(225, 22);
             this.tbEmail.TabIndex = 7;
+            this.tbEmail.TextChanged += new System.EventHandler(this.TextoCambiado);
             // 
             // tbDNI
             // 
@@ -128,6 +139,7 @@ namespace Ejercicio1
             this.tbDNI.Name = "tbDNI";
             this.tbDNI.Size = new System.Drawing.Size(225, 22);
             this.tbDNI.TabIndex = 8;
+            this.tbDNI.TextChanged += new System.EventHandler(this.TextoCambiado);
             // 
             // tbTelf
             // 
@@ -135,6 +147,7 @@ namespace Ejercicio1
             this.tbTelf.Name = "tbTelf";
             this.tbTelf.Size = new System.Drawing.Size(225, 22);
             this.tbTelf.TabIndex = 9;
+            this.tbTelf.TextChanged += new System.EventHandler(this.TextoCambiado);
             // 
             // groupBox1
             // 
@@ -231,16 +244,6 @@ namespace Ejercicio1
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Actualizar y Eliminar";
             // 
-            // bEliminar
-            // 
-            this.bEliminar.Location = new System.Drawing.Point(179, 21);
-            this.bEliminar.Name = "bEliminar";
-            this.bEliminar.Size = new System.Drawing.Size(140, 76);
-            this.bEliminar.TabIndex = 0;
-            this.bEliminar.Text = "Eliminar";
-            this.bEliminar.UseVisualStyleBackColor = true;
-            this.bEliminar.Click += new System.EventHandler(this.bEliminar_Click);
-            // 
             // bActualizar
             // 
             this.bActualizar.Location = new System.Drawing.Point(23, 21);
@@ -251,6 +254,16 @@ namespace Ejercicio1
             this.bActualizar.UseVisualStyleBackColor = true;
             this.bActualizar.Click += new System.EventHandler(this.bActualizar_Click);
             // 
+            // bEliminar
+            // 
+            this.bEliminar.Location = new System.Drawing.Point(179, 21);
+            this.bEliminar.Name = "bEliminar";
+            this.bEliminar.Size = new System.Drawing.Size(140, 76);
+            this.bEliminar.TabIndex = 0;
+            this.bEliminar.Text = "Eliminar";
+            this.bEliminar.UseVisualStyleBackColor = true;
+            this.bEliminar.Click += new System.EventHandler(this.bEliminar_Click);
+            // 
             // lbContador
             // 
             this.lbContador.AutoSize = true;
@@ -259,11 +272,86 @@ namespace Ejercicio1
             this.lbContador.Size = new System.Drawing.Size(0, 17);
             this.lbContador.TabIndex = 13;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.rbApellidos);
+            this.groupBox4.Controls.Add(this.rbNombre);
+            this.groupBox4.Controls.Add(this.rbDNI);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.tbBuscar);
+            this.groupBox4.Controls.Add(this.bBuscar);
+            this.groupBox4.Location = new System.Drawing.Point(43, 511);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(721, 121);
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Búsqueda";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 56);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 17);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Buscar por:";
+            // 
+            // tbBuscar
+            // 
+            this.tbBuscar.Location = new System.Drawing.Point(246, 53);
+            this.tbBuscar.Name = "tbBuscar";
+            this.tbBuscar.Size = new System.Drawing.Size(187, 22);
+            this.tbBuscar.TabIndex = 1;
+            // 
+            // bBuscar
+            // 
+            this.bBuscar.Location = new System.Drawing.Point(493, 33);
+            this.bBuscar.Name = "bBuscar";
+            this.bBuscar.Size = new System.Drawing.Size(206, 62);
+            this.bBuscar.TabIndex = 0;
+            this.bBuscar.Text = "Buscar";
+            this.bBuscar.UseVisualStyleBackColor = true;
+            this.bBuscar.Click += new System.EventHandler(this.bBuscar_Click);
+            // 
+            // rbDNI
+            // 
+            this.rbDNI.AutoSize = true;
+            this.rbDNI.Location = new System.Drawing.Point(111, 33);
+            this.rbDNI.Name = "rbDNI";
+            this.rbDNI.Size = new System.Drawing.Size(50, 21);
+            this.rbDNI.TabIndex = 3;
+            this.rbDNI.TabStop = true;
+            this.rbDNI.Text = "Dni";
+            this.rbDNI.UseVisualStyleBackColor = true;
+            // 
+            // rbNombre
+            // 
+            this.rbNombre.AutoSize = true;
+            this.rbNombre.Location = new System.Drawing.Point(111, 60);
+            this.rbNombre.Name = "rbNombre";
+            this.rbNombre.Size = new System.Drawing.Size(79, 21);
+            this.rbNombre.TabIndex = 4;
+            this.rbNombre.TabStop = true;
+            this.rbNombre.Text = "Nombre";
+            this.rbNombre.UseVisualStyleBackColor = true;
+            // 
+            // rbApellidos
+            // 
+            this.rbApellidos.AutoSize = true;
+            this.rbApellidos.Location = new System.Drawing.Point(111, 87);
+            this.rbApellidos.Name = "rbApellidos";
+            this.rbApellidos.Size = new System.Drawing.Size(86, 21);
+            this.rbApellidos.TabIndex = 5;
+            this.rbApellidos.TabStop = true;
+            this.rbApellidos.Text = "Apellidos";
+            this.rbApellidos.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 523);
+            this.ClientSize = new System.Drawing.Size(800, 658);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.lbContador);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -284,6 +372,8 @@ namespace Ejercicio1
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,6 +403,13 @@ namespace Ejercicio1
         private System.Windows.Forms.Button bActualizar;
         private System.Windows.Forms.Button bEliminar;
         private System.Windows.Forms.Label lbContador;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox tbBuscar;
+        private System.Windows.Forms.Button bBuscar;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RadioButton rbApellidos;
+        private System.Windows.Forms.RadioButton rbNombre;
+        private System.Windows.Forms.RadioButton rbDNI;
     }
 }
 

@@ -291,5 +291,11 @@ namespace Ejercicio1
                 
             }  
         }
+
+        private void bMostrarTodos_Click(object sender, EventArgs e)
+        {
+            fProfesores fProf = new fProfesores(dataAdapter);
+            fProf.ShowDialog();
+        }
     }
 }

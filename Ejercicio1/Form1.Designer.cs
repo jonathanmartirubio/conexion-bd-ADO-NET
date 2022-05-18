@@ -58,6 +58,7 @@ namespace Ejercicio1
             this.rbDNI = new System.Windows.Forms.RadioButton();
             this.rbNombre = new System.Windows.Forms.RadioButton();
             this.rbApellidos = new System.Windows.Forms.RadioButton();
+            this.bMostrarTodos = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -157,7 +158,7 @@ namespace Ejercicio1
             this.groupBox1.Controls.Add(this.bAnterior);
             this.groupBox1.Location = new System.Drawing.Point(43, 251);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(725, 120);
+            this.groupBox1.Size = new System.Drawing.Size(721, 120);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Navegar";
@@ -206,9 +207,9 @@ namespace Ejercicio1
             // 
             this.groupBox2.Controls.Add(this.bAnyadir);
             this.groupBox2.Controls.Add(this.bGuardar);
-            this.groupBox2.Location = new System.Drawing.Point(39, 395);
+            this.groupBox2.Location = new System.Drawing.Point(43, 377);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(359, 110);
+            this.groupBox2.Size = new System.Drawing.Size(355, 110);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Nuevo Profesor";
@@ -237,7 +238,7 @@ namespace Ejercicio1
             // 
             this.groupBox3.Controls.Add(this.bActualizar);
             this.groupBox3.Controls.Add(this.bEliminar);
-            this.groupBox3.Location = new System.Drawing.Point(419, 395);
+            this.groupBox3.Location = new System.Drawing.Point(419, 377);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(345, 110);
             this.groupBox3.TabIndex = 12;
@@ -280,7 +281,7 @@ namespace Ejercicio1
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.tbBuscar);
             this.groupBox4.Controls.Add(this.bBuscar);
-            this.groupBox4.Location = new System.Drawing.Point(43, 511);
+            this.groupBox4.Location = new System.Drawing.Point(43, 493);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(721, 121);
             this.groupBox4.TabIndex = 14;
@@ -346,11 +347,22 @@ namespace Ejercicio1
             this.rbApellidos.Text = "Apellidos";
             this.rbApellidos.UseVisualStyleBackColor = true;
             // 
+            // bMostrarTodos
+            // 
+            this.bMostrarTodos.Location = new System.Drawing.Point(501, 178);
+            this.bMostrarTodos.Name = "bMostrarTodos";
+            this.bMostrarTodos.Size = new System.Drawing.Size(232, 53);
+            this.bMostrarTodos.TabIndex = 15;
+            this.bMostrarTodos.Text = "Mostrar todos los Profesores";
+            this.bMostrarTodos.UseVisualStyleBackColor = true;
+            this.bMostrarTodos.Click += new System.EventHandler(this.bMostrarTodos_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 658);
+            this.Controls.Add(this.bMostrarTodos);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.lbContador);
             this.Controls.Add(this.groupBox3);
@@ -410,6 +422,7 @@ namespace Ejercicio1
         private System.Windows.Forms.RadioButton rbApellidos;
         private System.Windows.Forms.RadioButton rbNombre;
         private System.Windows.Forms.RadioButton rbDNI;
+        private System.Windows.Forms.Button bMostrarTodos;
     }
 }
 

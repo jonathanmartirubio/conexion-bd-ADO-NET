@@ -22,7 +22,7 @@ namespace Ejercicio1
         SqlDataAdapter dataAdapter;
         private int pos;
         private int MaxRegistros;
-        
+
         private void Deshabilitar(int pos)
         {
             if (pos == 0 || pos < 0)
@@ -35,7 +35,7 @@ namespace Ejercicio1
                 bAnterior.Enabled = true;
                 bPrimero.Enabled = true;
             }
-            if((pos+1) == MaxRegistros)
+            if ((pos + 1) == MaxRegistros)
             {
                 bSiguiente.Enabled = false;
                 bUltimo.Enabled = false;
@@ -145,8 +145,9 @@ namespace Ejercicio1
                 bAnterior.Enabled = false;
                 bPrimero.Enabled = false;
                 bActualizar.Enabled = false;
+                bGuardar.Enabled = false;
             }
-            
+
             conect.Close();
 
         }
@@ -164,7 +165,6 @@ namespace Ejercicio1
                     pos = 0;
                     MostrarRegistro(pos);
                     lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-                    bActualizar.Enabled = false;
                 }
                 else
                 {
@@ -172,7 +172,6 @@ namespace Ejercicio1
                     Deshabilitar(pos);
                     MostrarRegistro(pos);
                     lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-                    bActualizar.Enabled = false;
                 }
 
             }
@@ -195,14 +194,13 @@ namespace Ejercicio1
                 Deshabilitar(pos);
                 MostrarRegistro(pos);
                 lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-                bActualizar.Enabled = false;
             }
             else
             {
                 Deshabilitar(pos);
                 lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
-            
+
         }
         private void bSiguiente_Click(object sender, EventArgs e)
         {
@@ -215,14 +213,14 @@ namespace Ejercicio1
                 Deshabilitar(pos);
                 MostrarRegistro(pos);
                 lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-                bActualizar.Enabled = false;
+
             }
             else
             {
                 Deshabilitar(pos);
                 lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
-            
+
         }
 
         private void bUltimo_Click(object sender, EventArgs e)
@@ -238,7 +236,6 @@ namespace Ejercicio1
                     pos = MaxRegistros - 1;
                     MostrarRegistro(pos);
                     lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-                    bActualizar.Enabled = false;
                 }
                 else
                 {
@@ -246,7 +243,6 @@ namespace Ejercicio1
                     Deshabilitar(pos);
                     MostrarRegistro(pos);
                     lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-                    bActualizar.Enabled = false;
                 }
 
             }
@@ -265,8 +261,8 @@ namespace Ejercicio1
             tbApellidos.Clear();
             tbEmail.Clear();
             tbTelf.Clear();
+            bActualizar.Enabled = false;
         }
-        //TODO: Comprobar datos correctos TextChanged
         private void bGuardar_Click(object sender, EventArgs e)
         {
             DataRow drRegistro = dsProfesores.Tables["Profesores"].NewRow();
@@ -296,7 +292,7 @@ namespace Ejercicio1
                 MostrarRegistro(pos);
                 lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
-            
+
         }
 
         private void bActualizar_Click(object sender, EventArgs e)
@@ -312,7 +308,6 @@ namespace Ejercicio1
             SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
             dataAdapter.Update(dsProfesores, "Profesores");
         }
-        //TODO: Controlar lo que se muestra si al eliminar no quedasen registros
         private void bEliminar_Click(object sender, EventArgs e)
         {
             DialogResult Eliminar;
@@ -333,15 +328,62 @@ namespace Ejercicio1
                     MaxRegistros--;
                     pos = 0;
                     MostrarRegistro(pos);
+                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                    if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
+                    {
+                        Deshabilitar(pos);
+                    }
                     MessageBox.Show("Registro eliminado.");
+                    
+                }
+            }
+
+        }
+        private bool txtmodificado()
+        {
+            bool res;
+            DataRow drRegistro = dsProfesores.Tables["Profesores"].Rows[pos];
+
+            if (tbDNI.Text == (string)drRegistro["DNI"] && tbApellidos.Text == (string)drRegistro["Apellido"] &&
+                tbNombre.Text == (string)drRegistro["Nombre"] && tbEmail.Text == (string)drRegistro["EMail"] &&
+                    tbTelf.Text == (string)drRegistro["tlf"])
+                res = false;
+            else
+                res = true;
+            return res;
+        }
+        private void TextoCambiado(object sender, EventArgs e)
+        {
+            if(dsProfesores.Tables["Profesores"].Rows.Count != 0)
+            {
+                if (tbDNI.Text == "" || tbNombre.Text == "" || tbApellidos.Text == "" || tbEmail.Text == "" || tbTelf.Text == "")
+                {
+                    bGuardar.Enabled = false;
+                    bActualizar.Enabled = false;
+                }
+                else
+                {
+                    bGuardar.Enabled = true;
+                }
+                if (!txtmodificado())
+                {
+                    bActualizar.Enabled = false;
+                    bGuardar.Enabled = false;
+                }
+                else
+                {
+                    bActualizar.Enabled = true;
+                }
+            }
+            else
+            {
+                if (tbDNI.Text != "" && tbNombre.Text != "" && tbApellidos.Text != "" && tbEmail.Text != "" && tbTelf.Text != "")
+                {
+                    bGuardar.Enabled = true;
                 }
             }
             
-        }
 
-        private void TextoCambiado(object sender, EventArgs e)
-        {
-                bActualizar.Enabled = true;
         }
 
 

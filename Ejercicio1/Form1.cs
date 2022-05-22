@@ -265,32 +265,40 @@ namespace Ejercicio1
         }
         private void bGuardar_Click(object sender, EventArgs e)
         {
-            DataRow drRegistro = dsProfesores.Tables["Profesores"].NewRow();
+            try 
+            { 
+                DataRow drRegistro = dsProfesores.Tables["Profesores"].NewRow();
 
-            drRegistro["DNI"] = tbDNI.Text;
-            drRegistro["Nombre"] = tbNombre.Text;
-            drRegistro["Apellido"] = tbApellidos.Text;
-            drRegistro["Tlf"] = tbTelf.Text;
-            drRegistro["EMail"] = tbEmail.Text;
+                drRegistro["DNI"] = tbDNI.Text;
+                drRegistro["Nombre"] = tbNombre.Text;
+                drRegistro["Apellido"] = tbApellidos.Text;
+                drRegistro["Tlf"] = tbTelf.Text;
+                drRegistro["EMail"] = tbEmail.Text;
 
-            dsProfesores.Tables["Profesores"].Rows.Add(drRegistro);
+                dsProfesores.Tables["Profesores"].Rows.Add(drRegistro);
+                SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
 
-            SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.Update(dsProfesores, "Profesores");
 
-            dataAdapter.Update(dsProfesores, "Profesores");
-            if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
-            {
-                GuardarPrimerRegistro();
-                pos = 0;
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
+                {
+                    GuardarPrimerRegistro();
+                    pos = 0;
+                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                }
+                else
+                {
+                    MaxRegistros++;
+                    pos = MaxRegistros - 1;
+                    Deshabilitar(pos);
+                    MostrarRegistro(pos);
+                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                }
             }
-            else
+            catch (System.Data.SqlClient.SqlException)
             {
-                MaxRegistros++;
-                pos = MaxRegistros - 1;
-                Deshabilitar(pos);
-                MostrarRegistro(pos);
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+
+                MessageBox.Show("El DNI introducido ya existe en la base de datos.");
             }
 
         }

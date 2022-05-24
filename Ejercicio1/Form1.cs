@@ -297,7 +297,6 @@ namespace Ejercicio1
             }
             catch (System.Data.SqlClient.SqlException)
             {
-
                 MessageBox.Show("El DNI introducido ya existe en la base de datos.");
             }
 

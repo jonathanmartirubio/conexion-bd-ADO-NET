@@ -23,7 +23,7 @@ namespace Ejercicio1
         private int pos;
         private int MaxRegistros;
 
-        private void Deshabilitar(int pos)
+        private void ControlarNavegacion(int pos)
         {
             if (pos == 0 || pos < 0)
             {
@@ -169,14 +169,14 @@ namespace Ejercicio1
                 else
                 {
                     pos = 0;
-                    Deshabilitar(pos);
+                    ControlarNavegacion(pos);
                     MostrarRegistro(pos);
                 }
 
             }
             else
             {
-                Deshabilitar(pos);
+                ControlarNavegacion(pos);
             }
 
         }
@@ -189,12 +189,12 @@ namespace Ejercicio1
             if (!pregunta)
             {
                 pos--;
-                Deshabilitar(pos);
+                ControlarNavegacion(pos);
                 MostrarRegistro(pos);
             }
             else
             {
-                Deshabilitar(pos);
+                ControlarNavegacion(pos);
             }
 
         }
@@ -206,12 +206,12 @@ namespace Ejercicio1
             if (!pregunta)
             {
                 pos++;
-                Deshabilitar(pos);
+                ControlarNavegacion(pos);
                 MostrarRegistro(pos);
             }
             else
             {
-                Deshabilitar(pos);
+                ControlarNavegacion(pos);
             }
 
         }
@@ -232,14 +232,14 @@ namespace Ejercicio1
                 else
                 {
                     pos = MaxRegistros - 1;
-                    Deshabilitar(pos);
+                    ControlarNavegacion(pos);
                     MostrarRegistro(pos);
                 }
 
             }
             else
             {
-                Deshabilitar(pos);
+                ControlarNavegacion(pos);
             }
 
         }
@@ -279,7 +279,7 @@ namespace Ejercicio1
                 {
                     MaxRegistros++;
                     pos = MaxRegistros - 1;
-                    Deshabilitar(pos);
+                    ControlarNavegacion(pos);
                     MostrarRegistro(pos);
                 }
             }
@@ -302,6 +302,7 @@ namespace Ejercicio1
 
             SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
             dataAdapter.Update(dsProfesores, "Profesores");
+            MessageBox.Show("Registro actualizado correctamente.");
         }
         private void bEliminar_Click(object sender, EventArgs e)
         {
@@ -325,7 +326,7 @@ namespace Ejercicio1
                     MostrarRegistro(pos);
                     if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
                     {
-                        Deshabilitar(pos);
+                        ControlarNavegacion(pos);
                     }
                     MessageBox.Show("Registro eliminado.");
                     

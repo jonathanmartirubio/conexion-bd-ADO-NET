@@ -79,6 +79,7 @@ namespace Ejercicio1
             tbTelf.Text = drRegistro["Tlf"].ToString();
             tbApellidos.Text = drRegistro["Apellido"].ToString();
             tbEmail.Text = drRegistro["email"].ToString();
+            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
 
         }
 
@@ -115,6 +116,7 @@ namespace Ejercicio1
             bPrimero.Enabled = true;
             bMostrarTodos.Enabled = true;
             lbTablaVacia.Text = "";
+            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -139,9 +141,8 @@ namespace Ejercicio1
             }
             else
             {
-                MostrarRegistro(pos);
                 MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
+                MostrarRegistro(pos);
                 bAnterior.Enabled = false;
                 bPrimero.Enabled = false;
                 bActualizar.Enabled = false;
@@ -164,21 +165,18 @@ namespace Ejercicio1
                 {
                     pos = 0;
                     MostrarRegistro(pos);
-                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
                 }
                 else
                 {
                     pos = 0;
                     Deshabilitar(pos);
                     MostrarRegistro(pos);
-                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
                 }
 
             }
             else
             {
                 Deshabilitar(pos);
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
 
         }
@@ -193,12 +191,10 @@ namespace Ejercicio1
                 pos--;
                 Deshabilitar(pos);
                 MostrarRegistro(pos);
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
             else
             {
                 Deshabilitar(pos);
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
 
         }
@@ -212,13 +208,10 @@ namespace Ejercicio1
                 pos++;
                 Deshabilitar(pos);
                 MostrarRegistro(pos);
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-
             }
             else
             {
                 Deshabilitar(pos);
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
 
         }
@@ -235,21 +228,18 @@ namespace Ejercicio1
                 {
                     pos = MaxRegistros - 1;
                     MostrarRegistro(pos);
-                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
                 }
                 else
                 {
                     pos = MaxRegistros - 1;
                     Deshabilitar(pos);
                     MostrarRegistro(pos);
-                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
                 }
 
             }
             else
             {
                 Deshabilitar(pos);
-                lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
             }
 
         }
@@ -284,7 +274,6 @@ namespace Ejercicio1
                 {
                     GuardarPrimerRegistro();
                     pos = 0;
-                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
                 }
                 else
                 {
@@ -292,7 +281,6 @@ namespace Ejercicio1
                     pos = MaxRegistros - 1;
                     Deshabilitar(pos);
                     MostrarRegistro(pos);
-                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
                 }
             }
             catch (System.Data.SqlClient.SqlException)
@@ -335,7 +323,6 @@ namespace Ejercicio1
                     MaxRegistros--;
                     pos = 0;
                     MostrarRegistro(pos);
-                    lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
                     if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
                     {
                         Deshabilitar(pos);

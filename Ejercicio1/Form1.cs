@@ -91,7 +91,7 @@ namespace Ejercicio1
             tbDNI.Clear();
             tbEmail.Clear();
             tbTelf.Clear();
-            lbContador.Text = "";
+            lbContador.Text = "La tabla de profesores está vacía";
             bBuscar.Enabled = false;
             bEliminar.Enabled = false;
             bSiguiente.Enabled = false;
@@ -100,25 +100,12 @@ namespace Ejercicio1
             bUltimo.Enabled = false;
             bMostrarTodos.Enabled = false;
             bActualizar.Enabled = false;
-            lbTablaVacia.Text = "La tabla de profesores está vacía";
 
-            texto = lbTablaVacia.Text;
+            texto = lbContador.Text;
 
 
             return texto;
         }
-
-        private void GuardarPrimerRegistro()
-        {
-            bEliminar.Enabled = true;
-            bBuscar.Enabled = true;
-            bUltimo.Enabled = true;
-            bPrimero.Enabled = true;
-            bMostrarTodos.Enabled = true;
-            lbTablaVacia.Text = "";
-            lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             string cadConexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FA506IV\\source\\repos\\jonathanmartirubio\\conexion-bd-ADO-NET\\Instituto.mdf;Integrated Security=True;Connect Timeout=30";
@@ -272,8 +259,10 @@ namespace Ejercicio1
 
                 if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
                 {
-                    GuardarPrimerRegistro();
                     pos = 0;
+                    ControlarNavegacion(pos);
+                    MostrarRegistro(pos);
+                    bEliminar.Enabled = true;
                 }
                 else
                 {

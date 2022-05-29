@@ -115,15 +115,19 @@ namespace Ejercicio1
             dataAdapter.Fill(dsProfesores, "Profesores");
 
             pos = 0;
-            if (dsProfesores.Tables["Profesores"].Rows.Count == 0)
+            MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
+            if (MaxRegistros == 0)
             {
                 SinRegistros();
             }
             else
             {
-                MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
                 MostrarRegistro(pos);
                 ControlarNavegacion(pos);
+                if (MaxRegistros == 1)
+                {
+                    bBuscar.Enabled = false;
+                }
             }
 
             conect.Close();
@@ -270,6 +274,7 @@ namespace Ejercicio1
                 if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
                 {
                     pos = 0;
+                    MaxRegistros++;
                     ControlarNavegacion(pos);
                     MostrarRegistro(pos);
                     bEliminar.Enabled = true;
@@ -281,6 +286,7 @@ namespace Ejercicio1
                     pos = MaxRegistros - 1;
                     ControlarNavegacion(pos);
                     MostrarRegistro(pos);
+                    bBuscar.Enabled = true;
                 }
             }
             catch (System.Data.SqlClient.SqlException)
@@ -317,6 +323,7 @@ namespace Ejercicio1
                 dataAdapter.Update(dsProfesores, "Profesores");
                 if (dsProfesores.Tables["Profesores"].Rows.Count == 0)
                 {
+                    MaxRegistros--;
                     SinRegistros();
                 }
                 else
@@ -327,6 +334,7 @@ namespace Ejercicio1
                     if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
                     {
                         ControlarNavegacion(pos);
+                        bBuscar.Enabled = false;
                     }
                     MessageBox.Show("Registro eliminado.");
                     

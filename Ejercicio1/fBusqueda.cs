@@ -26,7 +26,7 @@ namespace Ejercicio1
         DataSet dsResultado;
         SqlDataAdapter da;
 
-        private void Deshabilitar(int pos)
+        private void ControlarNavegacion(int pos)
         {
             if (pos == 0 || pos < 0)
                 bAnterior.Enabled = false;
@@ -82,7 +82,7 @@ namespace Ejercicio1
         private void bAnterior_Click(object sender, EventArgs e)
         {
             pos--;
-            Deshabilitar(pos);
+            ControlarNavegacion(pos);
             MostrarResultado(pos);
             lbContador.Text = "Resultado " + (pos + 1) + " de " + max;
         }
@@ -90,7 +90,7 @@ namespace Ejercicio1
         private void bSiguiente_Click(object sender, EventArgs e)
         {
             pos++;
-            Deshabilitar(pos);
+            ControlarNavegacion(pos);
             MostrarResultado(pos);
             lbContador.Text = "Resultado " + (pos + 1) + " de " + max;
         }

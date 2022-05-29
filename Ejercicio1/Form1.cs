@@ -56,14 +56,7 @@ namespace Ejercicio1
                 || tbEmail.Text != (string)drRegistro["EMail"] || tbNombre.Text != (string)drRegistro["Nombre"] ||
                 tbTelf.Text != (string)drRegistro["Tlf"])
             {
-                DialogResult pregunta;
-
-                pregunta = MessageBox.Show("¿El registro ha cambiado desea actualizarlo?", "Registro Cambiado", MessageBoxButtons.YesNo);
-
-                if (pregunta == DialogResult.Yes)
-                {
-                    res = true;
-                }
+                res = true;
             }
 
             return res;
@@ -130,10 +123,7 @@ namespace Ejercicio1
             {
                 MaxRegistros = dsProfesores.Tables["Profesores"].Rows.Count;
                 MostrarRegistro(pos);
-                bAnterior.Enabled = false;
-                bPrimero.Enabled = false;
-                bActualizar.Enabled = false;
-                bGuardar.Enabled = false;
+                ControlarNavegacion(pos);
             }
 
             conect.Close();
@@ -142,16 +132,22 @@ namespace Ejercicio1
 
         private void bPrimero_Click(object sender, EventArgs e)
         {
-            bool pregunta;
+            bool regCambiado;
+            DialogResult pregunta;
 
-            pregunta = RegistroCambiado();
-
-            if (!pregunta)
+            regCambiado = RegistroCambiado();
+            if (!regCambiado)
             {
-                if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
+                pos = 0;
+                ControlarNavegacion(pos);
+                MostrarRegistro(pos);
+            }
+            else
+            {
+                pregunta = MessageBox.Show("¿El registro ha cambiado desea actualizarlo?", "Registro Cambiado", MessageBoxButtons.YesNo);
+                if (pregunta == DialogResult.Yes)
                 {
-                    pos = 0;
-                    MostrarRegistro(pos);
+                    ControlarNavegacion(pos);
                 }
                 else
                 {
@@ -159,21 +155,16 @@ namespace Ejercicio1
                     ControlarNavegacion(pos);
                     MostrarRegistro(pos);
                 }
-
             }
-            else
-            {
-                ControlarNavegacion(pos);
-            }
-
         }
 
         private void bAnterior_Click(object sender, EventArgs e)
         {
-            bool pregunta;
+            bool regCambiado;
+            DialogResult pregunta;
 
-            pregunta = RegistroCambiado();
-            if (!pregunta)
+            regCambiado = RegistroCambiado();
+            if (!regCambiado)
             {
                 pos--;
                 ControlarNavegacion(pos);
@@ -181,16 +172,26 @@ namespace Ejercicio1
             }
             else
             {
-                ControlarNavegacion(pos);
+                pregunta = MessageBox.Show("¿El registro ha cambiado desea actualizarlo?", "Registro Cambiado", MessageBoxButtons.YesNo);
+                if (pregunta == DialogResult.Yes)
+                {
+                    ControlarNavegacion(pos);
+                }
+                else
+                {
+                    pos--;
+                    ControlarNavegacion(pos);
+                    MostrarRegistro(pos);
+                }
             }
-
         }
         private void bSiguiente_Click(object sender, EventArgs e)
         {
-            bool pregunta;
+            bool regCambiado;
+            DialogResult pregunta;
 
-            pregunta = RegistroCambiado();
-            if (!pregunta)
+            regCambiado = RegistroCambiado();
+            if (!regCambiado)
             {
                 pos++;
                 ControlarNavegacion(pos);
@@ -198,23 +199,38 @@ namespace Ejercicio1
             }
             else
             {
-                ControlarNavegacion(pos);
+                pregunta = MessageBox.Show("¿El registro ha cambiado desea actualizarlo?", "Registro Cambiado", MessageBoxButtons.YesNo);
+                if (pregunta == DialogResult.Yes)
+                {
+                    ControlarNavegacion(pos);
+                }
+                else
+                {
+                    pos++;
+                    ControlarNavegacion(pos);
+                    MostrarRegistro(pos);
+                }
             }
-
         }
 
         private void bUltimo_Click(object sender, EventArgs e)
         {
-            bool pregunta;
+            bool regCambiado;
+            DialogResult pregunta;
 
-            pregunta = RegistroCambiado();
-
-            if (!pregunta)
+            regCambiado = RegistroCambiado();
+            if (!regCambiado)
             {
-                if (dsProfesores.Tables["profesores"].Rows.Count == 1)
+                pos = MaxRegistros - 1;
+                ControlarNavegacion(pos);
+                MostrarRegistro(pos);
+            }
+            else
+            {
+                pregunta = MessageBox.Show("¿El registro ha cambiado desea actualizarlo?", "Registro Cambiado", MessageBoxButtons.YesNo);
+                if (pregunta == DialogResult.Yes)
                 {
-                    pos = MaxRegistros - 1;
-                    MostrarRegistro(pos);
+                    ControlarNavegacion(pos);
                 }
                 else
                 {
@@ -222,13 +238,7 @@ namespace Ejercicio1
                     ControlarNavegacion(pos);
                     MostrarRegistro(pos);
                 }
-
             }
-            else
-            {
-                ControlarNavegacion(pos);
-            }
-
         }
 
         private void bAnyadir_Click(object sender, EventArgs e)
@@ -263,6 +273,7 @@ namespace Ejercicio1
                     ControlarNavegacion(pos);
                     MostrarRegistro(pos);
                     bEliminar.Enabled = true;
+                    bMostrarTodos.Enabled = true;
                 }
                 else
                 {
@@ -323,19 +334,6 @@ namespace Ejercicio1
             }
 
         }
-        private bool txtmodificado()
-        {
-            bool res;
-            DataRow drRegistro = dsProfesores.Tables["Profesores"].Rows[pos];
-
-            if (tbDNI.Text == (string)drRegistro["DNI"] && tbApellidos.Text == (string)drRegistro["Apellido"] &&
-                tbNombre.Text == (string)drRegistro["Nombre"] && tbEmail.Text == (string)drRegistro["EMail"] &&
-                    tbTelf.Text == (string)drRegistro["tlf"])
-                res = false;
-            else
-                res = true;
-            return res;
-        }
         private void TextoCambiado(object sender, EventArgs e)
         {
             if(dsProfesores.Tables["Profesores"].Rows.Count != 0)
@@ -349,14 +347,17 @@ namespace Ejercicio1
                 {
                     bGuardar.Enabled = true;
                 }
-                if (!txtmodificado())
+                if (!RegistroCambiado())
                 {
                     bActualizar.Enabled = false;
                     bGuardar.Enabled = false;
                 }
                 else
                 {
-                    bActualizar.Enabled = true;
+                    if (tbDNI.Text != "" && tbNombre.Text != "" && tbApellidos.Text != "" && tbEmail.Text != "" && tbTelf.Text != "")
+                    {
+                        bActualizar.Enabled = true;
+                    }
                 }
             }
             else

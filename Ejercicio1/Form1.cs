@@ -49,6 +49,20 @@ namespace Ejercicio1
             {
                 bBuscar.Enabled = false;
             }
+            else
+            {
+                bBuscar.Enabled = true;
+            }
+            if(MaxRegistros > 0)
+            {
+                bEliminar.Enabled = true;
+                bMostrarTodos.Enabled = true;
+            }
+            else
+            {
+                bEliminar.Enabled = false;
+                bMostrarTodos.Enabled = false;
+            }
         }
 
         private bool RegistroCambiado()
@@ -269,23 +283,18 @@ namespace Ejercicio1
                 SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
 
                 dataAdapter.Update(dsProfesores, "Profesores");
-
-                if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
+                MaxRegistros++;
+                if (MaxRegistros == 1)
                 {
                     pos = 0;
-                    MaxRegistros++;
                     ControlarBotones(pos);
                     MostrarRegistro(pos);
-                    bEliminar.Enabled = true;
-                    bMostrarTodos.Enabled = true;
                 }
                 else
                 {
-                    MaxRegistros++;
                     pos = MaxRegistros - 1;
                     ControlarBotones(pos);
                     MostrarRegistro(pos);
-                    bBuscar.Enabled = true;
                 }
             }
             catch (System.Data.SqlClient.SqlException)
@@ -329,10 +338,7 @@ namespace Ejercicio1
                 {
                     pos = 0;
                     MostrarRegistro(pos);
-                    if (MaxRegistros == 1)
-                    {
-                        ControlarBotones(pos);
-                    }
+                    ControlarBotones(pos);
                     MessageBox.Show("Registro eliminado.");
                     
                 }

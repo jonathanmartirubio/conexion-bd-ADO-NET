@@ -23,7 +23,7 @@ namespace Ejercicio1
         private int pos;
         private int MaxRegistros;
 
-        private void ControlarNavegacion(int pos)
+        private void ControlarBotones(int pos)
         {
             if (pos == 0 || pos < 0)
             {
@@ -44,6 +44,10 @@ namespace Ejercicio1
             {
                 bSiguiente.Enabled = true;
                 bUltimo.Enabled = true;
+            }
+            if (MaxRegistros == 1 || MaxRegistros == 0)
+            {
+                bBuscar.Enabled = false;
             }
         }
 
@@ -73,7 +77,6 @@ namespace Ejercicio1
             tbApellidos.Text = drRegistro["Apellido"].ToString();
             tbEmail.Text = drRegistro["email"].ToString();
             lbContador.Text = "Registro " + (pos + 1) + " de " + MaxRegistros;
-
         }
 
         private string SinRegistros()
@@ -123,11 +126,7 @@ namespace Ejercicio1
             else
             {
                 MostrarRegistro(pos);
-                ControlarNavegacion(pos);
-                if (MaxRegistros == 1)
-                {
-                    bBuscar.Enabled = false;
-                }
+                ControlarBotones(pos);
             }
 
             conect.Close();
@@ -143,7 +142,7 @@ namespace Ejercicio1
             if (!regCambiado)
             {
                 pos = 0;
-                ControlarNavegacion(pos);
+                ControlarBotones(pos);
                 MostrarRegistro(pos);
             }
             else
@@ -151,12 +150,12 @@ namespace Ejercicio1
                 pregunta = MessageBox.Show("¿El registro ha cambiado desea actualizarlo?", "Registro Cambiado", MessageBoxButtons.YesNo);
                 if (pregunta == DialogResult.Yes)
                 {
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                 }
                 else
                 {
                     pos = 0;
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                     MostrarRegistro(pos);
                 }
             }
@@ -171,7 +170,7 @@ namespace Ejercicio1
             if (!regCambiado)
             {
                 pos--;
-                ControlarNavegacion(pos);
+                ControlarBotones(pos);
                 MostrarRegistro(pos);
             }
             else
@@ -179,12 +178,12 @@ namespace Ejercicio1
                 pregunta = MessageBox.Show("¿El registro ha cambiado desea actualizarlo?", "Registro Cambiado", MessageBoxButtons.YesNo);
                 if (pregunta == DialogResult.Yes)
                 {
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                 }
                 else
                 {
                     pos--;
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                     MostrarRegistro(pos);
                 }
             }
@@ -198,7 +197,7 @@ namespace Ejercicio1
             if (!regCambiado)
             {
                 pos++;
-                ControlarNavegacion(pos);
+                ControlarBotones(pos);
                 MostrarRegistro(pos);
             }
             else
@@ -206,12 +205,12 @@ namespace Ejercicio1
                 pregunta = MessageBox.Show("¿El registro ha cambiado desea actualizarlo?", "Registro Cambiado", MessageBoxButtons.YesNo);
                 if (pregunta == DialogResult.Yes)
                 {
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                 }
                 else
                 {
                     pos++;
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                     MostrarRegistro(pos);
                 }
             }
@@ -226,7 +225,7 @@ namespace Ejercicio1
             if (!regCambiado)
             {
                 pos = MaxRegistros - 1;
-                ControlarNavegacion(pos);
+                ControlarBotones(pos);
                 MostrarRegistro(pos);
             }
             else
@@ -234,12 +233,12 @@ namespace Ejercicio1
                 pregunta = MessageBox.Show("¿El registro ha cambiado desea actualizarlo?", "Registro Cambiado", MessageBoxButtons.YesNo);
                 if (pregunta == DialogResult.Yes)
                 {
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                 }
                 else
                 {
                     pos = MaxRegistros - 1;
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                     MostrarRegistro(pos);
                 }
             }
@@ -275,7 +274,7 @@ namespace Ejercicio1
                 {
                     pos = 0;
                     MaxRegistros++;
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                     MostrarRegistro(pos);
                     bEliminar.Enabled = true;
                     bMostrarTodos.Enabled = true;
@@ -284,7 +283,7 @@ namespace Ejercicio1
                 {
                     MaxRegistros++;
                     pos = MaxRegistros - 1;
-                    ControlarNavegacion(pos);
+                    ControlarBotones(pos);
                     MostrarRegistro(pos);
                     bBuscar.Enabled = true;
                 }
@@ -321,20 +320,18 @@ namespace Ejercicio1
 
                 SqlCommandBuilder cb = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.Update(dsProfesores, "Profesores");
-                if (dsProfesores.Tables["Profesores"].Rows.Count == 0)
+                MaxRegistros--;
+                if (MaxRegistros == 0)
                 {
-                    MaxRegistros--;
                     SinRegistros();
                 }
                 else
                 {
-                    MaxRegistros--;
                     pos = 0;
                     MostrarRegistro(pos);
-                    if (dsProfesores.Tables["Profesores"].Rows.Count == 1)
+                    if (MaxRegistros == 1)
                     {
-                        ControlarNavegacion(pos);
-                        bBuscar.Enabled = false;
+                        ControlarBotones(pos);
                     }
                     MessageBox.Show("Registro eliminado.");
                     

@@ -343,11 +343,10 @@ namespace Ejercicio1
                     
                 }
             }
-
         }
         private void TextoCambiado(object sender, EventArgs e)
         {
-            if(dsProfesores.Tables["Profesores"].Rows.Count != 0)
+            if(MaxRegistros != 0)
             {
                 if (tbDNI.Text == "" || tbNombre.Text == "" || tbApellidos.Text == "" || tbEmail.Text == "" || tbTelf.Text == "")
                 {
@@ -378,8 +377,6 @@ namespace Ejercicio1
                     bGuardar.Enabled = true;
                 }
             }
-            
-
         }
 
 

@@ -22,6 +22,7 @@ namespace Ejercicio1
         SqlDataAdapter dataAdapter;
         private int pos;
         private int MaxRegistros;
+        private string cadConexion;
 
         private void ControlarBotones(int pos)
         {
@@ -118,7 +119,7 @@ namespace Ejercicio1
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            string cadConexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FA506IV\\source\\repos\\jonathanmartirubio\\conexion-bd-ADO-NET\\Instituto.mdf;Integrated Security=True;Connect Timeout=30";
+            cadConexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FA506IV\\source\\repos\\jonathanmartirubio\\conexion-bd-ADO-NET\\Instituto.mdf;Integrated Security=True;Connect Timeout=30";
 
             SqlConnection conect = new SqlConnection(cadConexion);
 
@@ -340,7 +341,6 @@ namespace Ejercicio1
                     MostrarRegistro(pos);
                     ControlarBotones(pos);
                     MessageBox.Show("Registro eliminado.");
-                    
                 }
             }
         }
@@ -401,7 +401,7 @@ namespace Ejercicio1
                         busquedaSQL = "SELECT * FROM Profesores WHERE Apellido LIKE '%" + datosBusqueda + "%'";
                     if (rbNombre.Checked)
                         busquedaSQL = "SELECT * FROM Profesores WHERE Nombre LIKE '%" + datosBusqueda + "%'";
-                    fBusqueda fBus = new fBusqueda(busquedaSQL);
+                    fBusqueda fBus = new fBusqueda(busquedaSQL, cadConexion);
                     fBus.ShowDialog();
                 }
                 
@@ -410,7 +410,7 @@ namespace Ejercicio1
 
         private void bMostrarTodos_Click(object sender, EventArgs e)
         {
-            fProfesores fProf = new fProfesores(dataAdapter);
+            fProfesores fProf = new fProfesores(dataAdapter, cadConexion);
             fProf.ShowDialog();
         }
     }

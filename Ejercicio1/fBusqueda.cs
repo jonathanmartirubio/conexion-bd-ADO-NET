@@ -13,16 +13,18 @@ namespace Ejercicio1
 {
     public partial class fBusqueda : Form
     {
-        public fBusqueda(string busquedaSQL)
+        public fBusqueda(string busquedaSQL, string cadConexion)
         {
             InitializeComponent();
 
             this.busquedaSQL = busquedaSQL;
+            this.cadConexion = cadConexion;
         }
 
         private int pos;
         private int max;
         private string busquedaSQL;
+        private string cadConexion;
         DataSet dsResultado;
         SqlDataAdapter da;
 
@@ -55,11 +57,11 @@ namespace Ejercicio1
                 tbTelf.Text = drRegistro["Tlf"].ToString();
                 tbApellidos.Text = drRegistro["Apellido"].ToString();
                 tbEmail.Text = drRegistro["email"].ToString();
+                lbContador.Text = "Resultado " + (pos + 1) + " de " + max;
             }
         }
         private void fBusqueda_Load(object sender, EventArgs e)
         {
-            string cadConexion = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\FA506IV\\source\\repos\\jonathanmartirubio\\conexion-bd-ADO-NET\\Instituto.mdf;Integrated Security=True;Connect Timeout=30";
             SqlConnection conect = new SqlConnection(cadConexion);
 
             conect.Open();
@@ -68,14 +70,9 @@ namespace Ejercicio1
             da.Fill(dsResultado, "Busqueda");
 
             pos = 0;
-            MostrarResultado(pos);
             max = dsResultado.Tables["Busqueda"].Rows.Count;
-            lbContador.Text = "Resultado " + (pos + 1) + " de " + max;
-            bAnterior.Enabled = false;
-            if (max == 1)
-            {
-                bSiguiente.Enabled = false;
-            }
+            MostrarResultado(pos);
+            ControlarNavegacion(pos);
             conect.Close();
         }
 
@@ -84,7 +81,6 @@ namespace Ejercicio1
             pos--;
             ControlarNavegacion(pos);
             MostrarResultado(pos);
-            lbContador.Text = "Resultado " + (pos + 1) + " de " + max;
         }
 
         private void bSiguiente_Click(object sender, EventArgs e)
@@ -92,7 +88,6 @@ namespace Ejercicio1
             pos++;
             ControlarNavegacion(pos);
             MostrarResultado(pos);
-            lbContador.Text = "Resultado " + (pos + 1) + " de " + max;
         }
     }
 }

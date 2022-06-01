@@ -41,7 +41,7 @@ namespace Ejercicio1
         }
         private void MostrarResultado(int pos)
         {
-            if (dsResultado.Tables["Busqueda"].Rows.Count == 0)
+            if (max == 0)
             {
                 this.Close();
                 MessageBox.Show("No Hay ningún resultado para esta búsqueda.", "Resultado de la búsqueda");
